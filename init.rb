@@ -1,0 +1,1 @@
+require 'janitor_rails'
