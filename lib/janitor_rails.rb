@@ -1,1 +1,1 @@
-require "janitor_rails/engine"
+require "janitor_rails/engine" if defined? Rails
