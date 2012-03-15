@@ -5,4 +5,5 @@ Gem::Specification.new do |s|
   s.author      = "Rasmus Rønn Nielsen"
   s.email       = "rasmusrnielsen@gmail.com"
   s.version     = "0.0.2"
+  s.files       = Dir["{lib,app,config,vendor}/**/*", "init.rb"]
 end
