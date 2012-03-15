@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Janitor test runner</title>
+  <%= javascript_include_tag 'janitor' %>
+  <%= javascript_include_tag 'test' %>
+</head>
+<body>
+  <div id="js_test_results"></div>
+  
+  <script type="text/javascript">
+    new Janitor.BrowserRunner({ el: document.getElementById('js_test_results') }).run();
+  </script>
+</body>
+</html>
