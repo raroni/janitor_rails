@@ -53,10 +53,12 @@ window.Janitor.Stitch = {};
   return this.require.define;
 }).call(this)({"assertions": function(exports, require, module) {
   module.exports = {
-    assertEqual: function(val1, val2) {
-      return this.storeAssert('equal', val1 === val2, {
-        val1: val1,
-        val2: val2
+    assertEqual: function(expected, actual) {
+      var success;
+      success = expected === actual;
+      return this.storeAssert('equal', success, {
+        expected: expected,
+        actual: actual
       });
     },
     assert: function(exp) {
@@ -112,6 +114,15 @@ window.Janitor.Stitch = {};
       });
       return this.storeAssert('all', success, {
         callback: callback
+      });
+    },
+    assertInDelta: function(expected, actual, delta) {
+      var success;
+      success = expected - delta < actual && expected + delta > actual;
+      return this.storeAssert('inDelta', success, {
+        expected: expected,
+        actual: actual,
+        delta: delta
       });
     }
   };
@@ -246,6 +257,10 @@ window.Janitor.Stitch = {};
 
     FailedAssertionMessage.prototype["true"] = function() {
       return "" + this.options.exp + " is not true";
+    };
+
+    FailedAssertionMessage.prototype.inDelta = function() {
+      return "" + this.options.actual + " is not within " + this.options.expected + "±" + this.options.delta;
     };
 
     FailedAssertionMessage.prototype.toString = function() {
